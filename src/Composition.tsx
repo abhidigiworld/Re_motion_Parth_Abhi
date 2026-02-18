@@ -31,11 +31,11 @@ const AUDIO_SRC = staticFile("Transcriptspeech.mp3");
 // These are stretched per scene using playbackRate so each section fits scene timing.
 const AUDIO_CUTS = {
   scene1: { from: 0, to: 200 },
-  scene2: { from: 180, to: 420 },
-  scene3: { from: 350, to: 830 },
-  transform: { from: 850, to: 1000 },
+  scene2: { from: 180, to: 400 },
+  scene3: { from: 360, to: 840 },
+  transform: { from: 840, to: 960 },
   // Tuned to avoid Scene 4 voice cut in the middle.
-  scene4: { from: 950, to: 1320 },
+  scene4: { from: 960, to: 1290 },
   final: { from: 1340, to: 1545 },
   end: { from: 1545, to: 1620 },
 } as const;
@@ -140,14 +140,7 @@ export const MyComposition: React.FC = () => {
           playbackRate={getRate(AUDIO_CUTS.final.from, AUDIO_CUTS.final.to, FINAL_END - FINAL_START)}
         />
       </Sequence>
-      <Sequence from={END_SLIDE_START} durationInFrames={END_SLIDE_END - END_SLIDE_START}>
-        <Audio
-          src={AUDIO_SRC}
-          startFrom={AUDIO_CUTS.end.from}
-          endAt={AUDIO_CUTS.end.to}
-          playbackRate={getRate(AUDIO_CUTS.end.from, AUDIO_CUTS.end.to, END_SLIDE_END - END_SLIDE_START)}
-        />
-      </Sequence>
+      
     </AbsoluteFill>
   );
 };

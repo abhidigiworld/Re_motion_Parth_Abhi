@@ -108,7 +108,7 @@ const DataCluster: React.FC<{
   frame: number;
 }> = ({ title, icon, left, top, appear, frame }) => {
   const local = frame - appear;
-  const opacity = interpolate(local, [0, 20], [0, 1], {
+  const opacity = interpolate(local, [0, 28], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
@@ -119,19 +119,19 @@ const DataCluster: React.FC<{
         position: "absolute",
         left,
         top,
-        width: 320,
-        height: 250,
+        width: 348,
+        height: 272,
         opacity,
       }}
     >
-      <OrangeIcon type={icon} x={129} y={0} />
+      <OrangeIcon type={icon} x={143} y={0} />
       <div
         style={{
           position: "absolute",
           top: 76,
           width: "100%",
           textAlign: "center",
-          fontSize: 23,
+          fontSize: 24,
           fontWeight: 700,
           lineHeight: 1.1,
           color: "#687a92",
@@ -142,13 +142,13 @@ const DataCluster: React.FC<{
         {title}
       </div>
 
-      <DatabaseIcon x={122} y={106} />
+      <DatabaseIcon x={136} y={116} />
 
       <div
         style={{
           position: "absolute",
-          left: 84,
-          top: 102,
+          left: 98,
+          top: 112,
           width: 152,
           height: 102,
           borderRadius: 999,
@@ -160,10 +160,10 @@ const DataCluster: React.FC<{
       <div
         style={{
           position: "absolute",
-          top: 206,
+          top: 224,
           width: "100%",
           textAlign: "center",
-          fontSize: 21,
+          fontSize: 22,
           fontWeight: 700,
           lineHeight: 1.05,
           letterSpacing: 0.1,
@@ -213,45 +213,45 @@ const FlowSquares: React.FC<{
 
 export const SceneThree: React.FC<SceneProps> = ({ frame }) => {
   const local = frame - SCENE_3_START;
-  const darkToLight = interpolate(local, [0, 36], [1, 0], {
+  const darkToLight = interpolate(local, [0, 52], [1, 0], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
 
-  const line1 = interpolate(local, [130, 190], [0, 1], {
+  const line1 = interpolate(local, [155, 245], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
-  const line2 = interpolate(local, [170, 230], [0, 1], {
+  const line2 = interpolate(local, [215, 305], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
-  const line3 = interpolate(local, [210, 270], [0, 1], {
+  const line3 = interpolate(local, [275, 360], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
 
-  const riskOpacity = interpolate(local, [300, 330, 390, 420], [0, 1, 1, 0], {
+  const riskOpacity = interpolate(local, [350, 400, 470, 479], [0, 1, 1, 0], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
-  const riskPanelOpacity = interpolate(local, [300, 332], [0, 1], {
+  const riskPanelOpacity = interpolate(local, [350, 402], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
-  const riskText1 = interpolate(local, [336, 352], [0, 1], {
+  const riskText1 = interpolate(local, [406, 430], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
-  const riskText2 = interpolate(local, [352, 368], [0, 1], {
+  const riskText2 = interpolate(local, [434, 454], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
-  const riskText3 = interpolate(local, [368, 384], [0, 1], {
+  const riskText3 = interpolate(local, [458, 476], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
-  const structureOpacity = interpolate(local, [270, 300], [1, 0], {
+  const structureOpacity = interpolate(local, [340, 376], [1, 0], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
@@ -318,8 +318,8 @@ export const SceneThree: React.FC<SceneProps> = ({ frame }) => {
             color: "#2d4767",
           }}
         >
-          <div style={{ fontSize: 48, fontWeight: 600 }}>Before Veeva Vault</div>
-          <div style={{ fontSize: 22, opacity: 0.9 }}>
+          <div style={{ fontSize: 52, fontWeight: 600 }}>Before Veeva Vault</div>
+          <div style={{ fontSize: 24, opacity: 0.9 }}>
             Disconnected Systems. Manual Coordination.
           </div>
         </div>
@@ -327,25 +327,25 @@ export const SceneThree: React.FC<SceneProps> = ({ frame }) => {
         <DataCluster
           title="Customer Service"
           icon="gear"
-          left={60}
-          top={130}
-          appear={18}
+          left={42}
+          top={124}
+          appear={24}
           frame={local}
         />
         <DataCluster
           title="Regulatory Affairs"
           icon="search"
-          left={900}
-          top={130}
-          appear={78}
+          left={890}
+          top={124}
+          appear={110}
           frame={local}
         />
         <DataCluster
           title="Quality Assurance"
           icon="check"
-          left={480}
-          top={390}
-          appear={138}
+          left={466}
+          top={382}
+          appear={196}
           frame={local}
         />
 
@@ -409,7 +409,7 @@ export const SceneThree: React.FC<SceneProps> = ({ frame }) => {
             bottom: 14,
             textAlign: "center",
             color: "#687e97",
-            fontSize: 48,
+            fontSize: 52,
             fontWeight: 600,
           }}
         >
@@ -422,8 +422,8 @@ export const SceneThree: React.FC<SceneProps> = ({ frame }) => {
           position: "absolute",
           left: "50%",
           top: "50%",
-          width: 560,
-          height: 188,
+          width: 620,
+          height: 214,
           transform: "translate(-50%, -50%)",
           opacity: riskPanelOpacity * riskOpacity,
         }}
@@ -445,10 +445,10 @@ export const SceneThree: React.FC<SceneProps> = ({ frame }) => {
             position: "absolute",
             left: 0,
             right: 0,
-            top: 28,
+            top: 32,
             textAlign: "center",
             color: "#2b4768",
-            fontSize: 33,
+            fontSize: 36,
             fontWeight: 700,
             opacity: riskText1 * riskOpacity,
           }}
@@ -460,10 +460,10 @@ export const SceneThree: React.FC<SceneProps> = ({ frame }) => {
             position: "absolute",
             left: 0,
             right: 0,
-            top: 78,
+            top: 88,
             textAlign: "center",
             color: "#2b4768",
-            fontSize: 33,
+            fontSize: 36,
             fontWeight: 700,
             opacity: riskText2 * riskOpacity,
           }}
@@ -475,10 +475,10 @@ export const SceneThree: React.FC<SceneProps> = ({ frame }) => {
             position: "absolute",
             left: 0,
             right: 0,
-            top: 128,
+            top: 144,
             textAlign: "center",
             color: "#2b4768",
-            fontSize: 33,
+            fontSize: 36,
             fontWeight: 700,
             opacity: riskText3 * riskOpacity,
           }}

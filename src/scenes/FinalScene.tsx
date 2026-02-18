@@ -5,7 +5,7 @@ import { Particles, SceneProps } from "./shared";
 
 export const FinalScene: React.FC<SceneProps> = ({ frame }) => {
   const local = frame - FINAL_START;
-  const borderProgress = interpolate(local, [0, 70], [0, 1], {
+  const borderProgress = interpolate(local, [0, 40], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
@@ -38,10 +38,10 @@ export const FinalScene: React.FC<SceneProps> = ({ frame }) => {
 
       <svg width={1280} height={720} style={{ position: "absolute", inset: 0 }}>
         <rect
-          x={102}
-          y={102}
-          width={1076 * borderProgress}
-          height={516 * borderProgress}
+          x={120}
+          y={128}
+          width={1040 * borderProgress}
+          height={464 * borderProgress}
           rx={28}
           fill="none"
           stroke="rgba(175,206,248,0.55)"

@@ -1,6 +1,7 @@
 import React from "react";
 import {
   AbsoluteFill,
+  Easing,
   Img,
   interpolate,
   spring,
@@ -11,13 +12,13 @@ import { SCENE_2_START } from "./timeline";
 import {
   glassStyle,
   SceneProps,
-  typed,
   Particles,
 } from "./shared";
 
 export const SceneTwo: React.FC<SceneProps> = ({ frame }) => {
   const local = frame - SCENE_2_START;
   const { fps } = useVideoConfig();
+  const sceneScale = 0.84;
 
   const logoPop = spring({
     frame: local,
@@ -30,7 +31,7 @@ export const SceneTwo: React.FC<SceneProps> = ({ frame }) => {
     extrapolateRight: "clamp",
   });
 
-  const titleText = typed("Veeva Vault", (local - 95) / 3.8);
+  const titleText = "Veeva Vault";
 
   const taglineOpacity = interpolate(local, [195, 235], [0, 1], {
     extrapolateLeft: "clamp",
@@ -53,62 +54,91 @@ export const SceneTwo: React.FC<SceneProps> = ({ frame }) => {
       <div
         style={{
           position: "absolute",
-          top: 180,
-          left: "50%",
-          transform: `translateX(-50%) scale(${logoScale})`,
-          opacity: logoOpacity,
-          width: 190,
-          height: 130,
-          overflow: "visible",
+          inset: 0,
+          transform: `scale(${sceneScale})`,
+          transformOrigin: "center center",
         }}
       >
-        <Img
-          src={staticFile("Veeva-logo-Social.png")}
+        <div
           style={{
-            width: "100%",
-            height: "100%",
-            objectFit: "contain",
-            opacity: 0.95,
-            filter: "drop-shadow(0 8px 20px rgba(124,170,234,0.35))",
+            position: "absolute",
+            top: 180,
+            left: "50%",
+            transform: `translateX(-50%) scale(${logoScale})`,
+            opacity: logoOpacity,
+            width: 190,
+            height: 130,
+            overflow: "visible",
           }}
-        />
-      </div>
+        >
+          <Img
+            src={staticFile("Veeva-logo-Social.png")}
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "contain",
+              opacity: 0.95,
+              filter: "drop-shadow(0 8px 20px rgba(124,170,234,0.35))",
+            }}
+          />
+        </div>
 
-      <div
-        style={{
-          position: "absolute",
-          top: 362,
-          left: "50%",
-          transform: "translateX(-50%)",
-          color: "#eef6ff",
-          fontFamily: "Avenir Next, Segoe UI, Tahoma, sans-serif",
-          fontSize: 72,
-          fontWeight: 600,
-          letterSpacing: 0.8,
-          minWidth: 470,
-          textAlign: "center",
-          textShadow: "0 8px 22px rgba(89,137,198,0.3)",
-        }}
-      >
-        {titleText}
-      </div>
+        <div
+          style={{
+            position: "absolute",
+            top: 362,
+            left: "50%",
+            transform: "translateX(-50%)",
+            color: "#eef6ff",
+            fontFamily: "Avenir Next, Segoe UI, Tahoma, sans-serif",
+            fontSize: 72,
+            fontWeight: 600,
+            letterSpacing: 0.8,
+            minWidth: 470,
+            textAlign: "center",
+            textShadow: "0 8px 22px rgba(89,137,198,0.3)",
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          {titleText.split("").map((ch, i) => {
+            const charIn = interpolate(local, [98 + i * 4, 116 + i * 4], [0, 1], {
+              extrapolateLeft: "clamp",
+              extrapolateRight: "clamp",
+              easing: Easing.out(Easing.cubic),
+            });
+            return (
+              <span
+                key={`${ch}-${i}`}
+                style={{
+                  display: "inline-block",
+                  transform: `translateX(${interpolate(charIn, [0, 1], [16, 0])}px)`,
+                  opacity: charIn,
+                }}
+              >
+                {ch === " " ? "\u00A0" : ch}
+              </span>
+            );
+          })}
+        </div>
 
-      <div
-        style={{
-          ...glassStyle,
-          position: "absolute",
-          top: 486,
-          left: "50%",
-          transform: "translateX(-50%)",
-          padding: "16px 28px",
-          opacity: taglineOpacity,
-          color: "#dbeaff",
-          fontFamily: "Avenir Next, Segoe UI, Tahoma, sans-serif",
-          fontSize: 28,
-          letterSpacing: 0.3,
-        }}
-      >
-        Powering Innovation in Life Sciences
+        <div
+          style={{
+            ...glassStyle,
+            position: "absolute",
+            top: 486,
+            left: "50%",
+            transform: "translateX(-50%)",
+            padding: "16px 28px",
+            opacity: taglineOpacity,
+            color: "#dbeaff",
+            fontFamily: "Avenir Next, Segoe UI, Tahoma, sans-serif",
+            fontSize: 28,
+            letterSpacing: 0.3,
+          }}
+        >
+          Powering Innovation in Life Sciences
+        </div>
       </div>
 
       <div

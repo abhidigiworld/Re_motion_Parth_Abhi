@@ -8,7 +8,6 @@ import {
   useVideoConfig,
 } from "remotion";
 import { END_SLIDE_END, END_SLIDE_START } from "./timeline";
-import { typed } from "./shared";
 
 export const CognizantWatermark: React.FC = () => {
   const frame = useCurrentFrame();
@@ -62,7 +61,7 @@ export const CognizantWatermark: React.FC = () => {
     whiteTextMix = 0;
   }
 
-  const text = typed("Cognizant", (frame - 30) / 4.5);
+  const brandText = "Cognizant";
   const subOpacity = interpolate(frame, [100, 140], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
@@ -123,9 +122,28 @@ export const CognizantWatermark: React.FC = () => {
             color: titleColor,
             letterSpacing: 0.2,
             minHeight: 60,
+            display: "flex",
           }}
         >
-          {text}
+          {brandText.split("").map((ch, i) => {
+            const charIn = interpolate(frame, [34 + i * 4, 52 + i * 4], [0, 1], {
+              extrapolateLeft: "clamp",
+              extrapolateRight: "clamp",
+              easing: Easing.out(Easing.cubic),
+            });
+            return (
+              <span
+                key={`${ch}-${i}`}
+                style={{
+                  display: "inline-block",
+                  transform: `translateX(${interpolate(charIn, [0, 1], [16, 0])}px)`,
+                  opacity: charIn,
+                }}
+              >
+                {ch}
+              </span>
+            );
+          })}
         </div>
       </div>
       <div
