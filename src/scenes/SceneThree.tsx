@@ -231,7 +231,7 @@ export const SceneThree: React.FC<SceneProps> = ({ frame }) => {
     extrapolateRight: "clamp",
   });
 
-  const riskOpacity = interpolate(local, [350, 400, 470, 479], [0, 1, 1, 0], {
+  const riskOpacity = interpolate(local, [350, 400], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });

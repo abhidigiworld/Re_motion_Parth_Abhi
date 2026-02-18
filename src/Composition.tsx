@@ -1,6 +1,7 @@
 import React from "react";
 import { AbsoluteFill, Audio, Sequence, staticFile, useCurrentFrame } from "remotion";
 import { CognizantWatermark } from "./scenes/CognizantWatermark";
+import { SceneDataHub } from "./scenes/SceneDataHub";
 import { EndWatermarkScene } from "./scenes/EndWatermarkScene";
 import { FinalScene } from "./scenes/FinalScene";
 import { SceneFour } from "./scenes/SceneFour";
@@ -9,6 +10,8 @@ import { SceneThree } from "./scenes/SceneThree";
 import { SceneTwo } from "./scenes/SceneTwo";
 import { TransformationScene } from "./scenes/TransformationScene";
 import {
+  DATA_HUB_END,
+  DATA_HUB_START,
   END_SLIDE_END,
   END_SLIDE_START,
   FINAL_END,
@@ -32,7 +35,7 @@ const AUDIO_SRC = staticFile("Transcriptspeech.mp3");
 const AUDIO_CUTS = {
   scene1: { from: 0, to: 200 },
   scene2: { from: 180, to: 400 },
-  scene3: { from: 360, to: 840 },
+  scene3: { from: 360, to: 860 },
   transform: { from: 840, to: 960 },
   // Tuned to avoid Scene 4 voice cut in the middle.
   scene4: { from: 960, to: 1290 },
@@ -74,6 +77,10 @@ export const MyComposition: React.FC = () => {
 
       <Sequence from={SCENE_4_START} durationInFrames={SCENE_4_END - SCENE_4_START}>
         <SceneFour frame={frame} />
+      </Sequence>
+
+      <Sequence from={DATA_HUB_START} durationInFrames={DATA_HUB_END - DATA_HUB_START}>
+        <SceneDataHub frame={frame} />
       </Sequence>
 
       <Sequence from={FINAL_START} durationInFrames={FINAL_END - FINAL_START}>
@@ -131,6 +138,9 @@ export const MyComposition: React.FC = () => {
           endAt={AUDIO_CUTS.scene4.to}
           playbackRate={getRate(AUDIO_CUTS.scene4.from, AUDIO_CUTS.scene4.to, SCENE_4_END - SCENE_4_START)}
         />
+      </Sequence>
+      <Sequence from={DATA_HUB_START} durationInFrames={DATA_HUB_END - DATA_HUB_START}>
+        <Audio src={staticFile("data.mp3")} />
       </Sequence>
       <Sequence from={FINAL_START} durationInFrames={FINAL_END - FINAL_START}>
         <Audio
